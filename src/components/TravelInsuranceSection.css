@@ -1,0 +1,95 @@
+.travel-insurance-section {
+  position: relative;
+  z-index: 4;
+  overflow: hidden;
+  min-height: 780px;
+  padding: 68px 24px 66px;
+  background: transparent;
+}
+
+.travel-insurance-section::before {
+  content: "";
+  position: absolute;
+  inset: -120px 0 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 28%, rgba(255, 225, 77, 0.13), transparent 35%),
+    radial-gradient(ellipse at 18% 56%, rgba(63, 95, 220, 0.12), transparent 42%),
+    radial-gradient(ellipse at 82% 60%, rgba(255, 255, 255, 0.04), transparent 34%),
+    linear-gradient(180deg, #010206 0%, #04050f 22%, #050713 58%, #010206 100%);
+}
+
+.travel-insurance-section::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 190px;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    #000 0%,
+    rgba(0, 0, 0, 0.82) 30%,
+    rgba(4, 5, 15, 0.28) 72%,
+    rgba(4, 5, 15, 0) 100%
+  );
+}
+
+.travel-insurance-rays {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.72;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 16%, #000 74%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 16%, #000 74%, transparent 100%);
+}
+
+.travel-insurance-inner {
+  position: relative;
+  z-index: 2;
+  width: min(1280px, 96%);
+  margin: 0 auto;
+}
+
+.travel-insurance-heading {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.safeguard-image-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.safeguard-image {
+  width: min(980px, 94vw);
+  max-height: 620px;
+  object-fit: contain;
+  display: block;
+  filter:
+    drop-shadow(0 34px 70px rgba(0, 0, 0, 0.62))
+    drop-shadow(0 0 34px rgba(255, 225, 77, 0.16));
+}
+
+@media (max-width: 760px) {
+  .travel-insurance-section {
+    min-height: 620px;
+    padding: 58px 16px 58px;
+  }
+
+  .travel-insurance-heading {
+    margin-bottom: 24px;
+  }
+
+  .safeguard-image {
+    width: min(100%, 620px);
+    max-height: 480px;
+  }
+}

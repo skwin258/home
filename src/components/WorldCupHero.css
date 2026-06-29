@@ -1,0 +1,547 @@
+/* 從原本 worldcup index.html 的 <style> 拆出來 */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { overflow-x: hidden; scroll-behavior: auto; }
+body { font-family: 'Readex Pro', system-ui, -apple-system, sans-serif; background: #010101; color: #fff; -webkit-font-smoothing: antialiased; }
+
+:root {
+  --gold: #ffffff;
+  --gold-glow: rgba(255, 255, 255, 0.15);
+  --malachite: #005a36;
+}
+
+.fixed { position: fixed; }
+.absolute { position: absolute; }
+.relative { position: relative; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+
+/* Scroll Canvas Background */
+#scroll-video-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: #050505;
+  top: -10%;
+  pointer-events: none;
+}
+
+#content {
+  position: relative;
+  z-index: 2;
+}
+
+nav {
+  z-index: 50;
+}
+
+#particles-canvas {
+  z-index: 3;
+}
+
+#fixed-cards {
+  z-index: 20;
+}
+
+#loader {
+  z-index: 100;
+}
+
+#scroll-video-container canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  mix-blend-mode: screen;
+  filter: brightness(0.62) contrast(1.05); /* 调暗 38%，确保星空深邃，突出前台纯白大字的可读性 */
+}
+#scroll-video-container .overlay { display: none; }
+
+/* Ambient Glow behind Canvas */
+.ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  height: 80vh;
+  background: radial-gradient(circle, rgba(0, 90, 54, 0.16) 0%, rgba(212, 175, 55, 0.08) 50%, rgba(5, 5, 5, 0) 100%);
+  filter: blur(120px);
+  z-index: 1;
+  pointer-events: none;
+  animation: glowPulse 12s infinite alternate ease-in-out;
+}
+@keyframes glowPulse {
+  0% { transform: translate(-50%, -50%) scale(1.0); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1.2) rotate(30deg); opacity: 1; }
+}
+
+/* Particles overlaying foreground */
+#particles-canvas {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 3;
+}
+
+/* Nav */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 2.5rem;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 100%);
+}
+nav > * { display: none !important; }
+nav .logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.25rem; color: #fff; letter-spacing: -0.04em; text-transform: lowercase; }
+nav .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+nav .nav-links a { font-size: 0.875rem; color: #d1d5db; text-decoration: none; transition: color 0.2s; text-transform: lowercase; }
+nav .nav-links a:hover { color: var(--gold); }
+nav .social { display: flex; align-items: center; gap: 1rem; }
+nav .social a { color: #d1d5db; transition: color 0.2s; }
+nav .social a:hover { color: var(--gold); }
+nav .social svg { width: 1.25rem; height: 1.25rem; }
+
+/* Hero */
+#hero {
+  position: relative; height: 100vh; width: 100%; display: flex; flex-direction: column;
+}
+#hero .gradient-overlay {
+  display: none;
+}
+#hero .content {
+  position: relative; z-index: 10; flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; /* 垂直水平完全居中 */
+  padding: 11vh 1.5rem 0; /* 顶部增加 11vh 的 padding 偏置，使文字整体进一步往下平移，避开顶部导航且完美契合金杯瓶颈的黄金分割线 */
+}
+#hero .subtitle { font-size: 0.875rem; color: #d1d5db; margin-bottom: 1.5rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; }
+#hero .hero-title-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 75rem;
+  text-transform: none;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  text-align: center;
+  gap: 0.6rem; /* 独立而均等的行间距像素级控制中心，使三行在大屏/小屏下都有完美等距的呼吸感 */
+}
+#hero .hero-title-main .title-row {
+  width: 100%;
+}
+#hero .hero-title-main .row-1 {
+  font-size: clamp(2.3rem, 6.4vw, 5.9rem);
+  font-weight: 800;
+  line-height: 1.0;
+}
+#hero .hero-title-main .row-3 {
+  font-size: clamp(2.5rem, 7vw, 6.2rem);
+  font-weight: 800;
+  line-height: 1.0;
+  margin-top: clamp(0.5rem, 1.6vw, 2.0rem); /* 独立向下微调第三行，拉开与第二行动效字的距离，使视觉层次更开阔 */
+}
+#hero .hero-title-main .row-2 {
+  position: relative;
+  /* 第二行高度与字体大小高度匹配，使其在垂直几何上形成最纯净的物理对称中心 */
+  height: clamp(6rem, 13vw, 11rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+#hero h1 .gooey-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#hero h1 .gooey-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  z-index: -1; /* 100% 占满以支撑浏览器渲染 Filter Region，但完全不可见且不拦指针，绕过 0x0 渲染 bug */
+}
+#hero h1 .gooey-wrapper {
+  position: absolute;
+  top: -55%;
+  bottom: -55%;
+  left: -8%;
+  right: -8%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: url(#gooey-threshold);
+  overflow: visible; /* 允许滤镜像素向外溢出渲染 */
+}
+#hero h1 .highlight-title {
+  position: absolute;
+  left: 50%;
+  top: 50%; /* 既然有了独立的物理 row-2 容器，垂直对齐可回归数学上精确无暇的 50% 物理中心 */
+  transform: translate(-50%, -50%);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: clamp(3.3rem, 8vw, 7.4rem);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  white-space: nowrap;
+  user-select: none;
+  text-align: center;
+  opacity: 0%;
+  line-height: 1.2; /* 设为正常的 1.2 倍行高，使渲染盒高度紧贴字形，确保视觉几何中心绝对垂直居中 */
+  padding: 0.18em 0.08em; /* 给中文粗体和 gooey filter 留出渲染缓冲，避免笔画被裁切 */
+}
+#hero .ctas {
+  display: flex; align-items: center; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; justify-content: center;
+}
+
+.electric-border {
+  --electric-light-color: oklch(from var(--electric-border-color) l c h);
+  position: relative;
+  border-radius: inherit;
+  overflow: visible;
+  isolation: isolate;
+}
+
+.eb-canvas-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.eb-canvas {
+  display: block;
+}
+
+.eb-content {
+  position: relative;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+.eb-layers {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.eb-glow-1,
+.eb-glow-2,
+.eb-background-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.eb-glow-1 {
+  border: 2px solid oklch(from var(--electric-border-color) l c h / 0.6);
+  filter: blur(1px);
+}
+
+.eb-glow-2 {
+  border: 2px solid var(--electric-light-color);
+  filter: blur(4px);
+}
+
+.eb-background-glow {
+  z-index: -1;
+  transform: scale(1.1);
+  filter: blur(32px);
+  opacity: 0.3;
+  background: linear-gradient(-30deg, var(--electric-light-color), transparent, var(--electric-border-color));
+}
+
+#hero .hero-electric-border {
+  border-radius: 999px;
+  --electric-border-color: #35c8ff;
+}
+
+#hero .hero-electric-border .eb-content {
+  overflow: hidden;
+}
+
+#hero .hero-electric-border .eb-background-glow {
+  opacity: 0.42;
+}
+
+#hero .code-box {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: #111111; border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 0.5rem; padding: 0.875rem 2rem;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+#hero .code-box .prompt { color: var(--gold); font-family: monospace; font-size: 0.875rem; }
+#hero .code-box code { font-size: 0.875rem; color: #e5e7eb; font-family: monospace; }
+#hero .cta-btn {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  background: rgba(7, 7, 11, 0.58);
+  color: #fff;
+  border: 1px solid rgba(53, 200, 255, 0.5);
+  border-radius: inherit;
+  padding: 0.95rem 2.55rem;
+  font-size: 1rem;
+  font-weight: 900;
+  text-decoration: none;
+  transition: background 0.3s, border-color 0.3s, transform 0.2s, color 0.3s;
+  text-transform: none;
+  letter-spacing: 0.06em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+#hero .cta-btn:hover {
+  background: rgba(53, 200, 255, 0.12);
+  border-color: rgba(53, 200, 255, 0.9);
+  color: #dff7ff;
+  transform: translateY(-2px);
+}
+#hero .cta-btn:active {
+  transform: translateY(0);
+}
+#hero .bounce-arrow {
+  position: relative; z-index: 10; display: flex; justify-content: center; padding-bottom: 2rem;
+}
+#hero .bounce-arrow svg { width: 1.5rem; height: 1.5rem; color: #6b7280; animation: bounce 1s infinite; }
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-25%); }
+}
+
+/* Cards triggered during scroll */
+#fixed-cards {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  background: transparent;
+  padding: 0;
+}
+#fixed-cards .grid {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+#fixed-cards .card {
+  position: absolute;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding: 0;
+  max-width: 22rem;
+  pointer-events: auto;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+#fixed-cards .card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.65rem;
+  font-weight: 900;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+  text-transform: lowercase;
+  letter-spacing: -0.03em;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.9);
+}
+#fixed-cards .card p {
+  color: #e5e7eb;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  text-transform: lowercase;
+  font-weight: 300;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+}
+
+/* 桌面端不对称靠右流线排版，彻底避开左侧和中部的金杯主体 */
+@media (min-width: 769px) {
+  #fixed-cards .card {
+    text-align: right;
+  }
+  #fixed-cards .card:nth-child(1) {
+    top: 20%;
+    right: 8vw;
+    left: auto;
+  }
+  #fixed-cards .card:nth-child(2) {
+    top: 42%;
+    right: 14vw;
+    left: auto;
+  }
+  #fixed-cards .card:nth-child(3) {
+    top: 64%;
+    right: 6vw;
+    left: auto;
+  }
+}
+
+/* Section 3 Footer focus */
+#section-three {
+  position: relative; min-height: 100vh; display: flex; align-items: flex-end;
+  justify-content: center; padding: 0 2.5rem 8rem;
+}
+#section-three .inner {
+  position: relative; z-index: 10; display: flex; flex-direction: column;
+  align-items: center; text-align: center;
+  opacity: 0; transform: translateY(32px); filter: blur(8px);
+  transition: opacity 1s ease-out, transform 1s ease-out, filter 1s ease-out;
+}
+#section-three .inner.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+#section-three .inner p { color: #d1d5db; font-size: 1rem; margin-bottom: 0.75rem; text-transform: lowercase; }
+#section-three .inner h2 { font-size: clamp(2rem, 6.5vw, 4.6rem); font-weight: 700; text-transform: lowercase; letter-spacing: -0.04em; }
+
+/* Content wrapper */
+#content { position: relative; z-index: 2; }
+
+/* Loading preloader */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #050505;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s;
+  color: #ffffff;
+}
+#loader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.loader-content {
+  text-align: center;
+}
+.loader-percentage {
+  font-size: 5rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(180deg, #ffffff 40%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  animation: loaderFocusEntrance 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes loaderFocusEntrance {
+  0% { opacity: 0; filter: blur(15px); transform: scale(1.18); }
+  100% { opacity: 1; filter: blur(0); transform: scale(1); }
+}
+.loader-bar-bg {
+  width: 160px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: loaderBarFadeIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+@keyframes loaderBarFadeIn {
+  0% { opacity: 0; transform: scaleX(0.8); }
+  100% { opacity: 1; transform: scaleX(1); }
+}
+.loader-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: var(--gold);
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 8px var(--gold-glow);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  nav .nav-links, nav .social { display: none; }
+  #hero .content { padding-bottom: 5rem; }
+  #hero h1 { font-size: 1.75rem; }
+  #hero .ctas { flex-direction: column; }
+  #fixed-cards {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: auto;
+    padding: 2rem 1.5rem 3rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 50%, transparent 100%);
+  }
+  #fixed-cards .grid {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: auto;
+    width: 100%;
+  }
+  #fixed-cards .card {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    max-width: 85%;
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 0;
+    box-shadow: none;
+  }
+  #fixed-cards .card:hover {
+    transform: none;
+  }
+  #fixed-cards .card:nth-child(2) {
+    align-self: flex-end;
+    text-align: right;
+  }
+  #fixed-cards .card:nth-child(1),
+  #fixed-cards .card:nth-child(3) {
+    align-self: flex-start;
+    text-align: left;
+  }
+  #section-three { padding-bottom: 5rem; }
+}
+
+.worldcup-component::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 75vh;
+  z-index: 25;
+  pointer-events: none;
+  opacity: var(--worldcup-fade-opacity, 0);
+  transition: opacity 0.08s linear;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 5, 5, 0) 0%,
+    rgba(5, 5, 5, 0.25) 28%,
+    rgba(5, 5, 5, 0.65) 58%,
+    rgba(5, 5, 5, 0.92) 82%,
+    #050505 100%
+  );
+}

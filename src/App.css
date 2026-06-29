@@ -1,0 +1,914 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #050505;
+  color: white;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+main {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.splash-area {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 32% 28%, rgba(207, 158, 255, 0.2), transparent 42%),
+    radial-gradient(ellipse at 70% 62%, rgba(62, 78, 196, 0.32), transparent 48%),
+    radial-gradient(ellipse at 22% 78%, rgba(255, 225, 77, 0.08), transparent 34%),
+    linear-gradient(
+      to bottom,
+      #120f17 0%,
+      #100d16 34%,
+      #0b0a13 52%,
+      #090b18 72%,
+      #05060d 100%
+    );
+}
+
+.splash-cursor-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* =========================
+   共用區塊
+========================= */
+
+.next-page {
+  position: relative;
+  z-index: 30;
+  width: 100%;
+  min-height: 100vh;
+  padding: 120px 24px;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.next-page-inner {
+  position: relative;
+  z-index: 5;
+  width: min(900px, 92%);
+  padding: 48px 32px;
+  border-radius: 28px;
+  text-align: center;
+}
+
+.next-page h2 {
+  margin: 0 0 16px;
+  font-size: 42px;
+  color: #fff;
+}
+
+.next-page p {
+  margin: 0;
+  color: #ccc;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.next-page.dark {
+  background: #111;
+}
+
+.next-page.dark .next-page-inner {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* =========================
+   第二格 APP 下載區
+========================= */
+
+.laser-section {
+  position: relative;
+  overflow: visible;
+  background: transparent;
+}
+
+.laser-section .laser-flow-container {
+  position: absolute;
+  inset: 0 0 -140px;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 66%, rgba(0, 0, 0, 0.65) 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 66%, rgba(0, 0, 0, 0.65) 82%, transparent 100%);
+}
+
+.laser-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 18vh;
+  z-index: 4;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    #050505 0%,
+    rgba(5, 5, 5, 0.58) 30%,
+    rgba(5, 5, 5, 0.18) 65%,
+    rgba(5, 5, 5, 0) 100%
+  );
+}
+
+.app-download-section {
+  position: relative;
+  z-index: 2;
+  min-height: auto;
+  padding: 80px 24px 70px;
+  overflow: visible;
+
+  background:
+    radial-gradient(circle at 30% 48%, rgba(207, 158, 255, 0.14), transparent 38%),
+    radial-gradient(circle at 70% 70%, rgba(90, 60, 180, 0.1), transparent 42%);
+}
+
+.app-download-layout {
+  position: relative;
+  z-index: 6;
+  width: min(1280px, 94%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 70px;
+}
+
+.app-download-layout.reverse {
+  grid-template-columns: 1fr 1fr;
+}
+
+.app-phone-reveal {
+  opacity: 0;
+  transform: translateX(-120px);
+  filter: blur(4px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.9s ease;
+}
+
+.app-phone-reveal.show {
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
+}
+
+.app-phone-image-wrap {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 720px;
+  transform: translateX(-60px);
+}
+
+.app-phone-image-wrap::before {
+  content: "";
+  position: absolute;
+  width: 620px;
+  height: 620px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(207, 158, 255, 0.2),
+    rgba(207, 158, 255, 0.075) 48%,
+    transparent 76%
+  );
+  filter: blur(34px);
+  z-index: -1;
+}
+
+.app-phone-main-img {
+  width: min(540px, 90%);
+  max-height: 760px;
+  object-fit: contain;
+  display: block;
+  animation: phoneFloatOnly 5s ease-in-out infinite;
+  filter:
+    drop-shadow(0 45px 70px rgba(0, 0, 0, 0.9))
+    drop-shadow(0 0 46px rgba(207, 158, 255, 0.28));
+}
+
+@keyframes phoneFloatOnly {
+  0% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-22px) rotate(1deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+}
+
+.app-download-text {
+  color: white;
+}
+
+.app-label {
+  margin: 0 0 16px;
+  color: #ffe14d;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+}
+
+.app-download-text h2 {
+  margin: 0 0 22px;
+  font-size: clamp(52px, 6vw, 92px);
+  line-height: 1.05;
+  font-weight: 900;
+  text-shadow: 0 0 32px rgba(207, 158, 255, 0.28);
+}
+
+.app-download-text p {
+  max-width: 560px;
+  color: #e5e7eb;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.app-store-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 34px;
+  align-items: center;
+}
+
+.store-badge {
+  width: 190px;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.25s ease, filter 0.25s ease;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.35));
+}
+
+.store-badge:hover {
+  transform: translateY(-3px) scale(1.03);
+  filter: drop-shadow(0 16px 30px rgba(207, 158, 255, 0.28));
+}
+
+.app-data-row {
+  width: min(620px, 100%);
+  margin-top: 42px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-radius: 24px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.app-data-row div {
+  padding: 22px 14px;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.app-data-row div:last-child {
+  border-right: none;
+}
+
+.app-data-row strong {
+  display: block;
+  color: #ffe14d;
+  font-size: 28px;
+  font-weight: 900;
+  text-shadow: 0 0 18px rgba(255, 225, 77, 0.45);
+}
+
+.app-data-row span {
+  display: block;
+  margin-top: 8px;
+  color: #d1d5db;
+  font-size: 14px;
+}
+
+/* 數字跑完後放大縮小 */
+.count-up-number {
+  display: inline-block;
+}
+
+.count-up-done {
+  animation: countPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes countPulse {
+  0% {
+    transform: scale(1);
+    text-shadow: 0 0 18px rgba(255, 225, 77, 0.45);
+  }
+
+  50% {
+    transform: scale(1.12);
+    text-shadow: 0 0 28px rgba(255, 225, 77, 0.85);
+  }
+
+  100% {
+    transform: scale(1);
+    text-shadow: 0 0 18px rgba(255, 225, 77, 0.45);
+  }
+}
+
+/* =========================
+   娛樂城評價區
+========================= */
+
+.casino-rating-section {
+  position: relative;
+  z-index: 3;
+  min-height: 760px;
+  overflow: visible;
+
+  margin-top: -110px;
+  padding: 140px 0 90px;
+
+  background: transparent;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.casino-rating-section::before {
+  content: "";
+  position: absolute;
+  top: -360px;
+  right: 0;
+  bottom: -70px;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 78% 28%, rgba(53, 67, 180, 0.26), transparent 52%),
+    radial-gradient(ellipse at 23% 72%, rgba(255, 225, 77, 0.07), transparent 34%),
+    linear-gradient(to bottom, rgba(9, 11, 24, 0), rgba(7, 8, 18, 0.22) 44%, rgba(6, 8, 18, 0.5) 78%, rgba(5, 7, 18, 0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.22) 28%, rgba(0, 0, 0, 0.72) 58%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.22) 28%, rgba(0, 0, 0, 0.72) 58%, transparent 100%);
+}
+
+.casino-rating-section::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -105px;
+  height: 240px;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 72% 22%, rgba(53, 67, 180, 0.16), transparent 58%),
+    radial-gradient(ellipse at 28% 12%, rgba(255, 225, 77, 0.04), transparent 44%),
+    linear-gradient(
+      to bottom,
+      rgba(5, 6, 13, 0) 0%,
+      rgba(7, 9, 22, 0.24) 34%,
+      rgba(8, 11, 33, 0.18) 62%,
+      rgba(3, 4, 10, 0) 100%
+    );
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.42) 20%, rgba(0, 0, 0, 0.58) 46%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.42) 20%, rgba(0, 0, 0, 0.58) 46%, transparent 100%);
+}
+
+.casino-rating-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: none;
+}
+
+.casino-rating-bg::before {
+  display: none;
+}
+
+.casino-rating-inner {
+  position: relative;
+  z-index: 2;
+  width: min(1280px, 94%);
+}
+
+.casino-rating-two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 420px;
+  align-items: center;
+  gap: 110px;
+}
+
+.casino-rating-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  filter: none;
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.casino-rating-reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+  filter: none;
+}
+
+.casino-rating-reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.casino-rating-content {
+  max-width: 760px;
+}
+
+.casino-rating-label {
+  margin: 0 0 12px;
+  color: #ffffff;
+  font-size: clamp(34px, 4vw, 56px);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-shadow:
+    0 0 18px rgba(255, 225, 77, 0.35),
+    0 0 34px rgba(0, 174, 255, 0.25);
+}
+
+.casino-rating-content h2 {
+  margin: 0 0 38px;
+  color: #e9f6ff;
+  font-size: clamp(22px, 2.2vw, 34px);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.casino-score-row {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin-bottom: 20px;
+}
+
+.casino-score {
+  color: #ffe14d;
+  font-size: clamp(76px, 9vw, 140px);
+  line-height: 0.9;
+  font-weight: 950;
+  text-shadow:
+    0 0 18px rgba(255, 225, 77, 0.8),
+    0 0 45px rgba(255, 178, 41, 0.55);
+}
+
+.casino-stars {
+  display: flex;
+  gap: 8px;
+  font-size: clamp(34px, 4vw, 64px);
+}
+
+.casino-stars span {
+  display: inline-block;
+  color: #ffffff;
+  opacity: 0.85;
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.3);
+  transition:
+    color 0.28s ease,
+    opacity 0.28s ease,
+    text-shadow 0.28s ease,
+    transform 0.28s ease;
+}
+
+.casino-stars span.active {
+  color: #ffe14d;
+  opacity: 1;
+  transform: scale(1.08);
+  text-shadow:
+    0 0 14px rgba(255, 225, 77, 0.8),
+    0 0 36px rgba(255, 178, 41, 0.55);
+}
+
+.casino-review-text {
+  margin: 0 0 42px 210px;
+  color: #eaf7ff;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.casino-review-text .count-up-number {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 950;
+  text-shadow: 0 0 16px rgba(255, 225, 77, 0.75);
+}
+
+.casino-category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  width: min(760px, 100%);
+}
+
+.casino-category-card {
+  position: relative;
+  min-height: 150px;
+  border-radius: 18px;
+  border-color: rgba(255, 225, 77, 0.32);
+  cursor: pointer;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+.casino-category-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 22px 54px rgba(255, 225, 77, 0.12);
+}
+
+.casino-category-card .border-glow-inner {
+  min-height: 150px;
+  align-items: center;
+  justify-content: center;
+}
+
+.casino-category-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.casino-category-icon {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: 950;
+  text-shadow: 0 0 16px rgba(88, 180, 255, 0.55);
+}
+
+.casino-category-icon img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 14px rgba(88, 180, 255, 0.42));
+}
+
+.casino-category-card p {
+  margin: 0;
+  color: #ffe14d;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+/* =========================
+   右側評論卡片 Stack
+========================= */
+
+.casino-review-stack-reveal {
+  width: 420px;
+  height: 520px;
+  justify-self: center;
+  align-self: center;
+
+  opacity: 0;
+  transform: translateX(50px);
+  filter: none;
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.casino-review-stack-reveal.show {
+  opacity: 1;
+  transform: translateX(0);
+  filter: none;
+}
+
+.casino-review-stack-reveal.show {
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
+}
+
+.casino-review-stack-area {
+  position: relative;
+  width: 360px;
+  height: 460px;
+  margin: 0 auto;
+}
+
+.casino-review-card {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 26px;
+  padding: 34px 28px 28px;
+  background: rgba(10, 13, 24, 0.98);
+  border: 1px solid rgba(255, 225, 77, 0.58);
+  box-shadow:
+    inset 0 0 24px rgba(255, 225, 77, 0.05),
+    0 24px 60px rgba(0, 0, 0, 0.68),
+    0 0 28px rgba(84, 130, 255, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.casino-review-avatar-wrap {
+  width: 86px;
+  height: 86px;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffe14d, #ffffff, #6fa2ff);
+  box-shadow:
+    0 0 18px rgba(255, 225, 77, 0.48),
+    0 0 26px rgba(88, 150, 255, 0.3);
+}
+
+.casino-review-avatar {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.casino-review-card h3 {
+  margin: 18px 0 8px;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.casino-review-stars {
+  margin-bottom: 22px;
+  color: #ffe14d;
+  font-size: 22px;
+  letter-spacing: 3px;
+  text-shadow:
+    0 0 10px rgba(255, 225, 77, 0.8),
+    0 0 22px rgba(255, 178, 41, 0.45);
+}
+
+.casino-review-card p {
+  margin: 0;
+  color: #eaf7ff;
+  font-size: 18px;
+  line-height: 1.75;
+  font-weight: 700;
+}
+
+.casino-review-card small {
+  margin-top: auto;
+  color: #96a3b8;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* Stack 基礎樣式 */
+.stack-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 700px;
+}
+
+.card-rotate,
+.card-rotate-disabled {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card-rotate {
+  cursor: grab;
+}
+
+.card-rotate-disabled {
+  cursor: pointer;
+}
+
+.stack-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 26px;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+   RWD
+========================= */
+
+@media (max-width: 900px) {
+  .next-page {
+    padding: 90px 18px;
+  }
+
+  .app-download-layout,
+  .app-download-layout.reverse {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .app-phone-image-wrap {
+    min-height: 520px;
+    order: 1;
+    transform: translateX(0);
+    justify-content: center;
+  }
+
+  .app-download-text {
+    order: 2;
+  }
+
+  .app-download-text p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .app-store-row {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .store-badge {
+    width: 165px;
+  }
+
+  .app-data-row {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .app-phone-main-img {
+    width: min(420px, 88vw);
+    max-height: 560px;
+  }
+
+  .casino-rating-section {
+    min-height: auto;
+    margin-top: -90px;
+    padding: 125px 0 90px;
+  }
+
+  .casino-rating-two-col {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .casino-rating-content {
+    max-width: 100%;
+  }
+
+  .casino-score-row {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .casino-review-text {
+    margin-left: 0;
+    font-size: 17px;
+  }
+
+  .casino-category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .casino-category-card {
+    min-height: 130px;
+  }
+
+  .casino-review-stack-reveal {
+    width: 320px;
+    height: 420px;
+  }
+
+  .casino-review-stack-area {
+    width: 300px;
+    height: 400px;
+  }
+
+  .casino-review-card {
+    padding: 28px 22px 24px;
+  }
+
+  .casino-review-avatar-wrap {
+    width: 76px;
+    height: 76px;
+  }
+
+  .casino-review-card p {
+    font-size: 16px;
+  }
+}
+
+.casino-rating-content,
+.casino-review-card {
+  opacity: 1;
+}
+
+.casino-rating-label,
+.casino-rating-content h2,
+.casino-review-text,
+.casino-category-card p,
+.casino-review-card h3,
+.casino-review-card p,
+.casino-review-card small {
+  filter: none;
+}
+
+.casino-review-card p {
+  color: #f2f7ff;
+}
+
+.casino-category-card p {
+  color: #ffe14d;
+  text-shadow: 0 0 10px rgba(255, 225, 77, 0.28);
+}
+
+.casino-section-fade {
+  width: min(1280px, 94%);
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.casino-section-fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.casino-rating-reveal {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+.casino-rating-reveal.show {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+.casino-review-stack-reveal {
+  width: 420px;
+  height: 520px;
+  justify-self: center;
+  align-self: center;
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+.casino-review-stack-reveal.show {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* src/App.css */
+
+.casino-rating-section {
+  position: relative;
+  z-index: 30;
+}
