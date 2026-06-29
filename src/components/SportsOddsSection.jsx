@@ -6,8 +6,7 @@ const EVENT_CATEGORY_IDS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 const DAY_SECONDS = 24 * 60 * 60;
 const MAX_EVENT_PAGES = 10;
 
-const CATEGORY_API =
-  "https://bigwinner.couchchao.com/api/event/getCategoryList";
+const CATEGORY_API = "/sports-api/api/event/getCategoryList";
 
 const FALLBACK_LOGO =
   "https://upload.wikimedia.org/wikipedia/commons/8/8e/Football_%28soccer_ball%29.svg";
@@ -100,7 +99,7 @@ function buildEventApi({ cid, page, start, end }) {
     end: String(end),
   });
 
-  return `https://bigwinner.couchchao.com/api/event/getEventList?${params.toString()}`;
+  return `/sports-api/api/event/getEventList?${params.toString()}`;
 }
 
 function getEventTime(event) {
