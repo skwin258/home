@@ -2006,6 +2006,16 @@ td.highlight-col .advantage-cell span:not(.cell-crown):not(.advantage-check) {
     drop-shadow(0 6px 8px rgba(0, 0, 0, 0.45));
 }
 
+.protection-icon img {
+  display: block;
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 0 8px rgba(255, 213, 77, 0.32))
+    drop-shadow(0 6px 8px rgba(0, 0, 0, 0.45));
+}
+
 .protection-card strong {
   position: relative;
   z-index: 2;
@@ -2053,6 +2063,16 @@ td.highlight-col .advantage-cell span:not(.cell-crown):not(.advantage-check) {
   .protection-icon span {
     font-size: 22px;
   }
+
+.protection-icon img {
+  display: block;
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 0 8px rgba(255, 213, 77, 0.32))
+    drop-shadow(0 6px 8px rgba(0, 0, 0, 0.45));
+}
 
   .protection-card strong {
     font-size: 11px;
@@ -2510,4 +2530,39 @@ td.highlight-col .advantage-cell span:not(.cell-crown):not(.advantage-check) {
 .fox-cta-section {
   content-visibility: auto;
   contain-intrinsic-size: 700px;
+}
+
+
+/* fox-cta-full-bleed-restore */
+.fox-cta-section {
+  margin-left: -18px;
+  margin-right: -18px;
+}
+
+.fox-cta-img-wrap {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.fox-cta-img {
+  width: 100%;
+  max-width: none;
+}
+
+.fox-cta-actions {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+@media (max-width: 390px) {
+  .fox-cta-section {
+    margin-left: -14px;
+    margin-right: -14px;
+  }
+
+  .fox-cta-actions {
+    padding-left: 26px;
+    padding-right: 26px;
+  }
 }
