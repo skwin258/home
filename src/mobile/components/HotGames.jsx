@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 
 import hotGame1 from "../assets/hot-game-1.png";
 import hotGame2 from "../assets/hot-game-2.png";
@@ -11,19 +11,19 @@ function HotGames() {
 
   const games = [
     {
-      title: "電子遊戲",
+      title: "?餃??",
       img: hotGame1,
     },
     {
-      title: "真人遊戲",
+      title: "?犖?",
       img: hotGame2,
     },
     {
-      title: "體育賽事",
+      title: "擃鞈賭?",
       img: hotGame3,
     },
     {
-      title: "彩票遊戲",
+      title: "敶拍巨?",
       img: hotGame4,
     },
   ];
@@ -59,15 +59,15 @@ function HotGames() {
     >
       <div className="hot-games-title-row">
         <div>
-          <h2>熱門遊戲</h2>
-          <p>多種遊戲選擇 樂趣無窮</p>
+          <h2>?梢??</h2>
+          <p>憭車??豢? 璅閎?∠狙</p>
         </div>
       </div>
 
       <div className="hot-games-list">
         {games.map((game) => (
           <div className="hot-game-banner" key={game.title}>
-            <img src={game.img} alt={game.title} />
+            <img src={game.img} alt={game.title} loading="lazy" decoding="async" />
           </div>
         ))}
       </div>

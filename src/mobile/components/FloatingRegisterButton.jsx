@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+﻿import { useEffect, useState } from "react";
 
 const LINE_URL = "https://lin.ee/tmJOJNM";
 const BUTTON_SIZE = 68;
@@ -35,14 +35,6 @@ function clampPosition(x, y) {
 
 function FloatingRegisterButton() {
   const [position, setPosition] = useState(null);
-  const dragRef = useRef({
-    moved: false,
-    pointerId: null,
-    startX: 0,
-    startY: 0,
-    originX: 0,
-    originY: 0,
-  });
 
   useEffect(() => {
     const setInitial = () => {
@@ -52,55 +44,13 @@ function FloatingRegisterButton() {
 
     setInitial();
     window.addEventListener("resize", setInitial);
+    window.addEventListener("orientationchange", setInitial);
 
-    return () => window.removeEventListener("resize", setInitial);
-  }, []);
-
-  const handlePointerDown = (event) => {
-    if (!position) return;
-
-    dragRef.current = {
-      moved: false,
-      pointerId: event.pointerId,
-      startX: event.clientX,
-      startY: event.clientY,
-      originX: position.x,
-      originY: position.y,
+    return () => {
+      window.removeEventListener("resize", setInitial);
+      window.removeEventListener("orientationchange", setInitial);
     };
-
-    event.currentTarget.setPointerCapture(event.pointerId);
-  };
-
-  const handlePointerMove = (event) => {
-    const drag = dragRef.current;
-    if (drag.pointerId !== event.pointerId) return;
-
-    const deltaX = event.clientX - drag.startX;
-    const deltaY = event.clientY - drag.startY;
-
-    if (Math.abs(deltaX) > 4 || Math.abs(deltaY) > 4) {
-      drag.moved = true;
-    }
-
-    if (!drag.moved) return;
-
-    const next = clampPosition(drag.originX + deltaX, drag.originY + deltaY);
-    setPosition(next);
-  };
-
-  const handlePointerUp = (event) => {
-    const drag = dragRef.current;
-    if (drag.pointerId === event.pointerId) {
-      drag.pointerId = null;
-    }
-  };
-
-  const handleClick = (event) => {
-    if (dragRef.current.moved) {
-      event.preventDefault();
-      dragRef.current.moved = false;
-    }
-  };
+  }, []);
 
   if (!position) return null;
 
@@ -113,11 +63,6 @@ function FloatingRegisterButton() {
       style={{
         transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
       }}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-      onPointerCancel={handlePointerUp}
-      onClick={handleClick}
       aria-label="立即註冊"
     >
       <span>立即<br />註冊</span>

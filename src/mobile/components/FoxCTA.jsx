@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 
 import foxCta from "../assets/fox-cta.png";
 
@@ -41,18 +41,18 @@ function FoxCTA() {
         <img
           className="fox-cta-img"
           src={foxCta}
-          alt="最強娛樂城 首選BC博球"
-        />
+          alt="?撘瑕?璅? 擐BC??"
+        loading="lazy" decoding="async" />
       </div>
 
       <div className="fox-cta-actions">
         <a className="fox-register-btn" href={LINE_URL} target="_blank" rel="noreferrer">
-          立即註冊
+          蝡閮餃?
         </a>
 
         <a className="fox-line-btn" href={LINE_URL} target="_blank" rel="noreferrer">
           <span className="fox-line-icon">LINE</span>
-          加入 LINE 好友
+          ? LINE 憟賢?
         </a>
       </div>
     </section>
@@ -60,3 +60,4 @@ function FoxCTA() {
 }
 
 export default FoxCTA;
+
