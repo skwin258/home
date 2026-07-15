@@ -59,8 +59,8 @@ function HotGames() {
     >
       <div className="hot-games-title-row">
         <div>
-          <h2>?梢??</h2>
-          <p>憭車??豢? 璅閎?∠狙</p>
+          <h2>熱門遊戲</h2>
+          <p>多款遊戲任您挑選</p>
         </div>
       </div>
 
