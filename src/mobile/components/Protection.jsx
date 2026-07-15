@@ -1,14 +1,23 @@
 ﻿import { useEffect, useRef, useState } from "react";
 
+import coloredBallImage from "../assets/Colored ball.png";
+import earphoneImage from "../assets/earphone.png";
+import footballImage from "../assets/football.png";
+import lightningImage from "../assets/lightning.png";
+import playingCardsImage from "../assets/Playing cards.png";
+import shieldImage from "../assets/Shield.png";
+import slotMachineImage from "../assets/Slot machine.png";
+import trophyImage from "../assets/Trophy.png";
+
 const protections = [
-  { icon: "盾", title: "安全加密", desc: "SSL 加密保護會員資料" },
-  { icon: "金", title: "資金保障", desc: "多重風控守護交易安全" },
-  { icon: "速", title: "快速出入金", desc: "流程簡潔，處理更有效率" },
-  { icon: "客", title: "24H 客服", desc: "專人協助，即時處理問題" },
-  { icon: "穩", title: "穩定系統", desc: "手機與桌機皆順暢操作" },
-  { icon: "真", title: "真人娛樂", desc: "高品質影像與流暢體驗" },
-  { icon: "體", title: "體育投注", desc: "熱門賽事與多元玩法" },
-  { icon: "電", title: "電子遊戲", desc: "精選遊戲，隨時開局" },
+  { icon: shieldImage, title: "安全加密", desc: "SSL 加密保護會員資料" },
+  { icon: lightningImage, title: "快速出入金", desc: "流程簡潔，處理更有效率" },
+  { icon: earphoneImage, title: "24H 客服", desc: "專人協助，即時處理問題" },
+  { icon: trophyImage, title: "穩定服務", desc: "長時間在線，體驗更順暢" },
+  { icon: footballImage, title: "體育投注", desc: "熱門賽事與多元玩法" },
+  { icon: playingCardsImage, title: "真人娛樂", desc: "高品質影像與流暢體驗" },
+  { icon: slotMachineImage, title: "電子遊戲", desc: "精選遊戲，隨時開局" },
+  { icon: coloredBallImage, title: "多元玩法", desc: "娛樂選項完整豐富" },
 ];
 
 function Protection() {
@@ -51,7 +60,7 @@ function Protection() {
         {protections.map((item) => (
           <div className="protection-card" key={item.title}>
             <div className="protection-icon">
-              <span>{item.icon}</span>
+              <img src={item.icon} alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </div>
 
             <strong>{item.title}</strong>
