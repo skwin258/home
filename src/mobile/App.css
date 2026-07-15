@@ -1,4 +1,4 @@
-* {
+﻿* {
   box-sizing: border-box;
 }
 
@@ -16,7 +16,7 @@
   font-family: Arial, "Microsoft JhengHei", sans-serif;
 }
 
-/* Hero 第一屏 */
+/* Hero 蝚砌?撅?*/
 .hero-section {
   position: relative;
   z-index: 1;
@@ -27,7 +27,7 @@
   height: 52px;
 }
 
-/* 狐狸主視覺：新圖本身已經含文字 */
+/* ?銝餉?閬綽??啣??祈澈撌脩??急?摮?*/
 .hero {
   position: relative;
   height: 680px;
@@ -49,7 +49,7 @@
 
 
 
-/* 上方稍微壓暗，避免 logo 區太亮 */
+/* 銝蝔凝憯?嚗??logo ?憭芯漁 */
 .hero::before {
   content: "";
   position: absolute;
@@ -64,7 +64,7 @@
   pointer-events: none;
 }
 
-/* 下方黑色漸層，讓圖片自然接到按鈕 */
+/* 銝暺瞍詨惜嚗????芰?亙?? */
 .hero::after {
   content: "";
   position: absolute;
@@ -83,7 +83,7 @@
   pointer-events: none;
 }
 
-/* 按鈕區：立即註冊 + LINE 同一列 */
+/* ???嚗??唾酉??+ LINE ????*/
 .action-area {
   position: relative;
   z-index: 10;
@@ -94,7 +94,7 @@
   align-items: stretch;
 }
 
-/* 共用科技感按鈕 */
+/* ?梁蝘?????*/
 .main-btn,
 .line-btn {
   position: relative;
@@ -108,7 +108,7 @@
   isolation: isolate;
 }
 
-/* 按鈕掃光 */
+/* ???? */
 .main-btn::before,
 .line-btn::before {
   content: "";
@@ -127,7 +127,7 @@
   z-index: -1;
 }
 
-/* 立即註冊 */
+/* 蝡閮餃? */
 .main-btn {
   gap: 12px;
   color: #1c1000;
@@ -210,7 +210,7 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
-/* 四個特色 */
+/* ???*/
 .feature-grid {
   position: relative;
   z-index: 10;
@@ -258,7 +258,7 @@
   color: rgba(255, 255, 255, 0.65);
 }
 
-/* 小手機 */
+/* 撠?璈?*/
 @media (max-width: 390px) {
   .mobile-page {
     padding-left: 14px;
@@ -305,7 +305,7 @@
   }
 }
 
-/* 第二格：APP下載，無外層大卡片 */
+/* 蝚砌??潘?APP銝?嚗憭惜憭批??*/
 .app-download {
   position: relative;
   z-index: 10;
@@ -317,7 +317,7 @@
   overflow: visible;
 }
 
-/* 標題 */
+/* 璅? */
 .section-header {
   position: relative;
   z-index: 2;
@@ -347,7 +347,7 @@
   line-height: 1.6;
 }
 
-/* 手機 + 下載圖 */
+/* ?? + 銝???*/
 .app-download-content {
   position: relative;
   z-index: 2;
@@ -424,16 +424,16 @@
   }
 }
 
-/* 下載圖片不要外層卡片 */
+/* 銝???銝?憭惜?∠? */
 .store-buttons {
   display: flex;
   flex-direction: column;
   gap: 14px;
 
-  /* 這裡調整整組下載圖 */
-  --store-scale: 1.5;      /* 大小 */
-  --store-x: -20px;         /* 左右，負數往左，正數往右 */
-  --store-y: -30px;          /* 上下，負數往上，正數往下 */
+  /* ?ㄐ隤踵?渡?銝???*/
+  --store-scale: 1.5;      /* 憭批? */
+  --store-x: -20px;         /* 撌血嚗??詨?撌佗?甇?敺??*/
+  --store-y: -30px;          /* 銝?嚗??詨?銝?甇?敺銝?*/
 
   transform: scale(var(--store-scale)) translate(var(--store-x), var(--store-y));
   transform-origin: left center;
@@ -456,7 +456,7 @@
   filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.45));
 }
 
-/* 第一張 Google Play */
+/* 蝚砌?撘?Google Play */
 .store-btn:nth-child(1) {
   --google-x: -4px;
   --google-y: 0px;
@@ -472,7 +472,7 @@
     transform 0.85s cubic-bezier(0.18, 0.9, 0.25, 1);
 }
 
-/* 第二張 App Store */
+/* 蝚砌?撘?App Store */
 .store-btn:nth-child(2) {
   --ios-x: 4px;
   --ios-y: 0px;
@@ -502,7 +502,7 @@
     translate(var(--ios-x), var(--ios-y));
 }
 
-/* 三個數據仍保留小卡，比較有層次 */
+/* 銝??靽?撠嚗?頛?撅斗活 */
 .app-stats {
   position: relative;
   z-index: 30;
@@ -531,7 +531,7 @@
   border: 0;
 }
 
-/* 中間分隔線 */
+/* 銝剝???蝺?*/
 .app-stats div:not(:last-child)::after {
   content: "";
   position: absolute;
@@ -606,7 +606,7 @@
   }
 }
 
-/* 第三格：娛樂城評價 */
+/* 蝚砌??潘?憡?????*/
 .casino-rating {
   position: relative;
   z-index: 8;
@@ -621,7 +621,7 @@
   overflow: visible;
 }
 
-/* 只做柔和光暈，不做方形背景 */
+/* ?芸?????嚗??敶Ｚ???*/
 .casino-rating::before {
   content: "";
   position: absolute;
@@ -644,7 +644,7 @@
   filter: blur(26px);
 }
 
-/* 右側淡淡深藍，不要矩形切割 */
+/* ?喳瘛⊥楚瘛梯?嚗?閬敶Ｗ???*/
 .casino-rating::after {
   content: "";
   position: absolute;
@@ -662,7 +662,7 @@
   );
 }
 
-/* 內容在光暈上面 */
+/* ?批捆?典?????*/
 .casino-rating-header,
 .rating-row,
 .rating-note,
@@ -671,7 +671,7 @@
   z-index: 2;
 }
 
-/* 讓內容在背景上面 */
+/* 霈摰孵?銝 */
 .casino-rating-header,
 .rating-row,
 .rating-note,
@@ -680,7 +680,7 @@
   z-index: 2;
 }
 
-/* 讓內容蓋在光暈上面 */
+/* 霈摰寡??典?????*/
 .casino-rating-header,
 .rating-row,
 .rating-note,
@@ -689,7 +689,7 @@
   z-index: 2;
 }
 
-/* 標題 */
+/* 璅? */
 .casino-rating-header {
   position: relative;
   z-index: 2;
@@ -711,7 +711,7 @@
   font-weight: 800;
 }
 
-/* 評分列 */
+/* 閰???*/
 .rating-row {
   position: relative;
   z-index: 2;
@@ -777,7 +777,7 @@
     0 0 16px rgba(255, 213, 77, 0.2);
 }
 
-/* 四個遊戲小卡 */
+/* ???脣???*/
 .casino-game-grid {
   position: relative;
   z-index: 2;
@@ -827,7 +827,7 @@
   white-space: nowrap;
 }
 
-/* 第四格：運彩分析 */
+/* 蝚砍??潘??蔗?? */
 .sports-analysis {
   position: relative;
   z-index: 10;
@@ -840,7 +840,7 @@
   font-size: 30px;
 }
 
-/* 賽事卡片 */
+/* 鞈賭??∠? */
 .sports-card {
   position: relative;
   margin-top: 12px;
@@ -1136,7 +1136,7 @@
   }
 }
 
-/* 第五格：近期文章 */
+/* 蝚砌??潘?餈??? */
 .recent-articles {
   position: relative;
   z-index: 10;
@@ -1313,7 +1313,7 @@
   animation: loadingSpin 0.8s linear infinite;
 }
 
-/* 第六格：熱門遊戲 */
+/* 蝚砍?潘??梢?? */
 .hot-games {
   position: relative;
   z-index: 10;
@@ -1448,7 +1448,7 @@
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
 }
 
-/* 第七格：好評推薦 */
+/* 蝚砌??潘?憟質??刻 */
 .reviews-section {
   position: relative;
   z-index: 10;
@@ -1611,7 +1611,7 @@
   }
 }
 
-/* 第八格：優勢比較 */
+/* 蝚砍?潘??芸瘥? */
 .advantage-compare {
   position: relative;
   z-index: 10;
@@ -1688,7 +1688,7 @@
   table-layout: fixed;
 }
 
-/* 欄寬 */
+/* 甈祝 */
 .advantage-table th:nth-child(1),
 .advantage-table td:nth-child(1) {
   width: 25%;
@@ -1739,7 +1739,7 @@
     0 0 18px rgba(255, 213, 77, 0.18);
 }
 
-/* 左側項目 */
+/* 撌血? */
 .advantage-table .row-title {
   height: 62px;
   padding: 0 8px 0 12px;
@@ -1751,7 +1751,7 @@
   white-space: nowrap;
 }
 
-/* 內容格 */
+/* ?批捆??*/
 .advantage-cell {
   position: relative;
   height: 62px;
@@ -1768,7 +1768,7 @@
   font-weight: 900;
 }
 
-/* BC博球整欄突出 */
+/* BC???湔?蝒 */
 .advantage-table tbody td.highlight-col {
   background:
     radial-gradient(circle at 50% 50%, rgba(255, 213, 77, 0.1), transparent 58%),
@@ -1782,7 +1782,7 @@
     0 0 18px rgba(255, 213, 77, 0.18);
 }
 
-/* 一般文字 */
+/* 銝?祆?摮?*/
 .advantage-cell span:not(.cell-crown):not(.advantage-check) {
   display: inline-block;
   max-width: 100%;
@@ -1792,12 +1792,12 @@
   word-break: keep-all;
 }
 
-/* BC博球欄文字金色 */
+/* BC??甈?摮???*/
 td.highlight-col .advantage-cell span:not(.cell-crown):not(.advantage-check) {
   color: #ffd54d;
 }
 
-/* 金色勾勾 */
+/* ??曉 */
 .advantage-check {
   display: inline-flex;
   align-items: center;
@@ -1821,7 +1821,7 @@ td.highlight-col .advantage-cell span:not(.cell-crown):not(.advantage-check) {
     0 8px 16px rgba(0, 0, 0, 0.28);
 }
 
-/* 皇冠 */
+/* ?? */
 .cell-crown {
   position: absolute;
   top: 8px;
@@ -1844,7 +1844,7 @@ td.highlight-col .advantage-cell span:not(.cell-crown):not(.advantage-check) {
     inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
-/* 小手機避免文字擠爆 */
+/* 撠?璈??摮???*/
 @media (max-width: 390px) {
   .advantage-header h2 {
     font-size: 26px;
@@ -1877,7 +1877,7 @@ td.highlight-col .advantage-cell span:not(.cell-crown):not(.advantage-check) {
   }
 }
 
-/* 第九格：八大保障 */
+/* 蝚砌??潘??怠之靽? */
 .protection-section {
   position: relative;
   z-index: 10;
@@ -2032,7 +2032,7 @@ td.highlight-col .advantage-cell span:not(.cell-crown):not(.advantage-check) {
   overflow: hidden;
 }
 
-/* 小手機 */
+/* 撠?璈?*/
 @media (max-width: 390px) {
   .protection-grid {
     gap: 7px;
@@ -2063,7 +2063,7 @@ td.highlight-col .advantage-cell span:not(.cell-crown):not(.advantage-check) {
   }
 }
 
-/* 第十格：常見問題 Q&A */
+/* 蝚砍??潘?撣貉??? Q&A */
 .faq-section {
   position: relative;
   z-index: 10;
@@ -2162,7 +2162,7 @@ td.highlight-col .advantage-cell span:not(.cell-crown):not(.advantage-check) {
   padding: 2px 0 4px;
 }
 
-/* 手指滑動時暫停動畫 */
+/* ??皛??????*/
 .faq-slider:hover .faq-track,
 .faq-slider:active .faq-track {
   animation-play-state: paused;
@@ -2253,7 +2253,7 @@ td.highlight-col .advantage-cell span:not(.cell-crown):not(.advantage-check) {
   }
 }
 
-/* 小手機 */
+/* 撠?璈?*/
 @media (max-width: 390px) {
   .faq-header h2 {
     font-size: 26px;
@@ -2275,7 +2275,7 @@ td.highlight-col .advantage-cell span:not(.cell-crown):not(.advantage-check) {
   }
 }
 
-/* 第十一格：狐狸 CTA */
+/* 蝚砍?銝?潘?? CTA */
 .fox-cta-section {
   position: relative;
   z-index: 10;
@@ -2303,7 +2303,7 @@ td.highlight-col .advantage-cell span:not(.cell-crown):not(.advantage-check) {
   }
 }
 
-/* 圖片區：往外吃掉 mobile-page 的左右 padding，變成滿版 */
+/* ???嚗?憭???mobile-page ?椰??padding嚗??遛??*/
 .fox-cta-img-wrap {
   position: relative;
   margin-left: -18px;
@@ -2316,7 +2316,7 @@ td.highlight-col .advantage-cell span:not(.cell-crown):not(.advantage-check) {
   border-radius: 0;
 }
 
-/* 狐狸圖：完整顯示，不裁切、不縮小、不光暈 */
+/* ???摰憿舐內嚗?鋆???蝮桀????? */
 .fox-cta-img {
   display: block;
   width: 100%;
@@ -2334,7 +2334,7 @@ td.highlight-col .advantage-cell span:not(.cell-crown):not(.advantage-check) {
   pointer-events: none;
 }
 
-/* 按鈕區 */
+/* ??? */
 .fox-cta-actions {
   margin-top: 14px;
   padding: 0 12px;
@@ -2423,18 +2423,13 @@ td.highlight-col .advantage-cell span:not(.cell-crown):not(.advantage-check) {
   justify-content: center;
   color: #1c1000;
   text-decoration: none;
-  touch-action: none;
+  touch-action: manipulation;
   user-select: none;
-  cursor: grab;
-  will-change: transform;
+    will-change: transform;
   filter:
     drop-shadow(0 0 14px rgba(255, 213, 77, 0.45))
     drop-shadow(0 12px 18px rgba(0, 0, 0, 0.5));
   isolation: isolate;
-}
-
-.floating-register-btn:active {
-  cursor: grabbing;
 }
 
 .floating-register-btn::before {
@@ -2495,4 +2490,24 @@ td.highlight-col .advantage-cell span:not(.cell-crown):not(.advantage-check) {
   .floating-register-btn::before {
     animation: none;
   }
+}
+
+
+
+.mobile-deferred-space {
+  min-height: 900px;
+  width: 100%;
+  pointer-events: none;
+}
+
+.sports-analysis,
+.recent-articles,
+.hot-games,
+.reviews-section,
+.advantage-compare,
+.protection-section,
+.faq-section,
+.fox-cta-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 700px;
 }
