@@ -5,37 +5,23 @@ import hotGame2 from "../assets/hot-game-2.png";
 import hotGame3 from "../assets/hot-game-3.png";
 import hotGame4 from "../assets/hot-game-4.png";
 
+const games = [
+  { title: "熱門老虎機", img: hotGame1 },
+  { title: "真人娛樂", img: hotGame2 },
+  { title: "體育投注", img: hotGame3 },
+  { title: "電子遊戲", img: hotGame4 },
+];
+
 function HotGames() {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
-
-  const games = [
-    {
-      title: "?餃??",
-      img: hotGame1,
-    },
-    {
-      title: "?犖?",
-      img: hotGame2,
-    },
-    {
-      title: "擃鞈賭?",
-      img: hotGame3,
-    },
-    {
-      title: "敶拍巨?",
-      img: hotGame4,
-    },
-  ];
 
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-
+      ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
           observer.disconnect();
@@ -60,7 +46,7 @@ function HotGames() {
       <div className="hot-games-title-row">
         <div>
           <h2>熱門遊戲</h2>
-          <p>多款遊戲任您挑選</p>
+          <p>精選體育、真人與電子娛樂，隨時開局。</p>
         </div>
       </div>
 

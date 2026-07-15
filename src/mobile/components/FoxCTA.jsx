@@ -13,9 +13,7 @@ function FoxCTA() {
     if (!section) return;
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-
+      ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
           observer.disconnect();
@@ -41,8 +39,10 @@ function FoxCTA() {
         <img
           className="fox-cta-img"
           src={foxCta}
-          alt="加入LINE"
-        loading="lazy" decoding="async" />
+          alt="立即加入 BC78999"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
 
       <div className="fox-cta-actions">
@@ -52,7 +52,7 @@ function FoxCTA() {
 
         <a className="fox-line-btn" href={LINE_URL} target="_blank" rel="noreferrer">
           <span className="fox-line-icon">LINE</span>
-          ? LINE 憟賢?
+          加入 LINE 客服
         </a>
       </div>
     </section>
@@ -60,4 +60,3 @@ function FoxCTA() {
 }
 
 export default FoxCTA;
-
