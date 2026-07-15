@@ -41,13 +41,13 @@ function FoxCTA() {
         <img
           className="fox-cta-img"
           src={foxCta}
-          alt="?撘瑕?璅? 擐BC??"
+          alt="加入LINE"
         loading="lazy" decoding="async" />
       </div>
 
       <div className="fox-cta-actions">
         <a className="fox-register-btn" href={LINE_URL} target="_blank" rel="noreferrer">
-          蝡閮餃?
+          立即註冊
         </a>
 
         <a className="fox-line-btn" href={LINE_URL} target="_blank" rel="noreferrer">
